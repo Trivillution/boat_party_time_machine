@@ -23,7 +23,7 @@ if submit:
 				st.info('你已经提交过了哟，重复提交会被我们当众鞭尸（当然不）感谢你的热情！')
 				ticket_number = ticket_number + np.random.random
 			st.success('感谢提交!')
-			submit_tickets.append(ticket_number)
+			submitted_tickets.append(ticket_number)
 
 st.info('TODO: connect the comment into a database, store ticket number & need to map to user. On the boat day, user should submit the ticket number in exchange for their message. Maybe can just try host on Github')
 			
