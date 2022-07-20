@@ -15,7 +15,6 @@ st.subheader('technical support contact')
 
 st.subheader('留言板')
 st.text('🗻________________________________________________________________________________🗻')
-fs = s3fs.S3FileSystem(anon=False)
 
 @st.experimental_memo(ttl=60)
 def read_file(filename):
