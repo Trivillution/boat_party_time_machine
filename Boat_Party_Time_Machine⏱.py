@@ -16,7 +16,7 @@ st.subheader('technical support contact')
 st.subheader('留言板')
 st.text('🗻________________________________________________________________________________🗻')
 
-@st.experimental_memo(ttl=60)
+@st.experimental_memo(ttl=300)
 def read_file(filename):
 	with fs.open(filename) as f:
 		return f.read().decode("utf-8")
@@ -73,9 +73,14 @@ if st.button('submit'):
 			else:
 				st.error(f"Unsuccessful S3 put_object response. Status - {status}")
 
+def show_image(random_number):
+	image_name = './data/image' + str(random_number) + '.JPG'
+	image = Image.open(image_name)
+	st.image(image, width=800)
 
+response_image = s3_client.get_object(Bucket='boatpartystreamlit2', Key="JJC_5143.jpeg")
+st.image(Image.open(response_image.get("Body")), width=800)
 
-#st.write('留言无法撤回。若需删除留言，请联系：chenyuanjie625@gmail.com')
 st.markdown(""" <style> .font {
 font-size:13px; font-family:Arial; color: #F0FFFF;} 
 </style> """, unsafe_allow_html=True)
