@@ -3,8 +3,8 @@ from PIL import Image
 import numpy as np
 from functions import create_s3_client, read_s3_pickle, write_s3_pickle
 
-qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display QR Code'))
-if qr_enable == 'Display QR Code':
+qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display Page QR Code'))
+if qr_enable == 'Display Page QR Code':
 	qr_image = Image.open('./QR_codes/past_qr-min.png')
 	st.sidebar.image(qr_image, width=200)
 

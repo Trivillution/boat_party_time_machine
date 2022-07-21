@@ -10,7 +10,7 @@ from functions import *
 # AWS_ACCESS_KEY_ID = st.secrets['AWS_ACCESS_KEY_ID']
 # AWS_SECRET_ACCESS_KEY = st.secrets['AWS_SECRET_ACCESS_KEY']
 qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display Page QR Code'))
-if qr_enable == 'Display QR Code':
+if qr_enable == 'Display Page QR Code':
 	qr_image = Image.open('./QR_codes/main_qr-min.png')
 	st.sidebar.image(qr_image, width=200)
 
