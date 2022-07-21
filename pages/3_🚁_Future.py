@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit.components.v1 import html
 import time
+from functions import create_s3_client, read_s3_pickle, write_s3_pickle
+
 st.set_page_config()
 
 st.title('“明天的我”')
@@ -10,9 +12,17 @@ st.write("若干年前，我们都在校园里，为Tripos奋斗，为明天感�
 st.write("我们希望在这次以“时光”为主题的活动上尽一些自己小小的努力。请在这里留下你想对五年之后的自己说的话，剑桥校友会将于五年之后的2027年9月23日准时将以下的信息发到你提供的邮箱里。连同我们现在留下的，对未来的大家小小的祝福")
 st.write('Love')
 st.write('CUCCS Alumni Network')
-content = st.text_area(label = '', value = 'Input message here')
+st.text('——————————————————————————————————————————————————————')
+
+content = st.text_area(label = 'Input message here', value = '')
 email = st.text_input('your personal email')
+name = st.text_input('Your preferred name', '未来的我自己')
 submit = st.button('Submit')
+
+s3_client = create_s3_client()
+future_name = read_s3_pickle(s3_client, 'boatpartystreamlit2', 'future_name.pkl')
+future_messages = read_s3_pickle(s3_client, 'boatpartystreamlit2', 'future_messages.pkl')
+
 
 if submit:
 	if '@' not in email:
@@ -21,13 +31,21 @@ if submit:
 		if len(content) == 0 or content == 'Input message here':
 			st.warning('对自己写点儿什么吧！')
 		else:
-			#TODO HERE
+			if email in future_messages.keys():
+				st.info('重复提交不会覆盖之前的信息！你可以对自己唠叨唠叨再唠叨...')
+				future_messages[email] = future_messages[email] + [content]
+				future_name[email] = future_messages[email] + [name]
+			else:
+				future_messages[email] = [content]
+				future_name[email] = [name]
+			write_s3_pickle(s3_client, 'boatpartystreamlit2', 'future_name.pkl', future_name)
+			write_s3_pickle(s3_client, 'boatpartystreamlit2', 'future_messages.pkl', future_messages)
 			st.success("提交成功")
 			st.write("祝一切好，五年后见！")
+
+
 st.info('TODO: slightly tricky if we want to automate. Data (mapped content) should be stored separately in remote database as well as locally for safety. May also consider applying security control')
 			
-
-
 
 my_html = """
 <script>
@@ -65,6 +83,6 @@ window.onload = function () {
 html(my_html)
 
 
-if st.button("Is blocked?"):
-  st.write("No, you can still interact")
-  st.balloons()
+if st.button("这里还有个气球，点击就可以放飞！"):
+	st.balloons()
+	st.text('如果点到1000000下的话会有惊喜哦！')
