@@ -5,6 +5,11 @@ from functions import create_s3_client, read_s3_pickle, write_s3_pickle
 
 st.set_page_config()
 
+qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display QR Code'))
+if qr_enable == 'Display QR Code':
+	qr_image = Image.open('./QR_codes/future_qr-min.png')
+	st.sidebar.image(qr_image, width=200)
+
 st.title('“明天的我”')
 
 st.write("若干年前，我们都在校园里，为Tripos奋斗，为明天感到迷茫，为拿一份工作的Offer操碎了心；今天的我们都在英国扎下了小小的一步脚印，并在这里重聚。无论你是在学术圈燃烧自己的青春和头发，还是身为社畜为社会做着绵薄的贡献，你还记得当初踏入校园或是初入社会时的初心吗？明天呢，你对明天有什么憧憬，5年之后你又希望成为什么样的人，过着什么样的生活呢？")

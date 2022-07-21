@@ -3,6 +3,11 @@ from PIL import Image
 import numpy as np
 from functions import create_s3_client, read_s3_pickle, write_s3_pickle
 
+qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display QR Code'))
+if qr_enable == 'Display QR Code':
+	qr_image = Image.open('./QR_codes/past_qr-min.png')
+	st.sidebar.image(qr_image, width=200)
+
 st.title('“过去”')
 
 st.write("每个人都在剑桥留下了不同的过去，不同的回忆。我们为每个人精心（其实是随机）准备了一张我们搜集到的过去的照片，点击下面一键领取吧！")

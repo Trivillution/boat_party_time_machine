@@ -2,6 +2,10 @@ import streamlit as st
 import numpy as np
 from functions import create_s3_client, read_s3_pickle, write_s3_pickle
 
+qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display QR Code'))
+if qr_enable == 'Display QR Code':
+	qr_image = Image.open('./QR_codes/current_qr-min.png')
+	st.sidebar.image(qr_image, width=200)
 
 st.title('“嘿，朋友”')
 
