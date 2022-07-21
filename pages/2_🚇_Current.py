@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+from PIL import Image
 from functions import create_s3_client, read_s3_pickle, write_s3_pickle
 
 qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display Page QR Code'))

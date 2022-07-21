@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit.components.v1 import html
 import time
+from PIL import Image
 from functions import create_s3_client, read_s3_pickle, write_s3_pickle
 
 st.set_page_config()
