@@ -14,8 +14,11 @@ st.write("每个人都在剑桥留下了不同的过去，不同的回忆。我�
 
 
 def show_image(random_number):
-	image_name = './data/image' + str(random_number) + '.JPG'
-	image = Image.open(image_name)
+	key = 'past_images/' + str(random_number) + '.jpg'
+	#st.write(key)
+	response = s3_client.get_object(Bucket='boatpartystreamlit2', Key=key)
+	#image_name = './data/image' + str(random_number) + '.JPG'
+	image = Image.open(response['Body'])
 	st.image(image, width=800)
 
 s3_client = create_s3_client()
@@ -23,19 +26,20 @@ submitted_tickets = read_s3_pickle(s3_client, 'boatpartystreamlit2', 'past_redee
 ticket_mapping = read_s3_pickle(s3_client, 'boatpartystreamlit2', 'ticket_number_to_photo_id.pkl')
 #images = ['image1', 'image 2']
 
-all_images = {1,2} # needs update
+all_images = set(np.arange(33))
+ # needs update
 
 occupied_images = set(ticket_mapping.values())
 remaining_images = list(all_images - set(occupied_images))
 
-ticket_number = st.text_input('your ticket number')
+ticket_number = st.text_input('your ticket code')
 
 
 
 click = st.button("一键领取")
 if click:
-	if ticket_number in ['', 'your ticket number']:
-		st.warning('请输入订单号（ticket number）')
+	if ticket_number in ['', 'your ticket code']:
+		st.warning('请输入订单号（ticket code）')
 	elif ticket_number in submitted_tickets:
 		st.warning('请勿重复领取！以下是你的专属回忆照片：')
 		random_number = ticket_mapping[ticket_number]
@@ -61,4 +65,4 @@ if click:
 
 
 
-st.info('TODO: we will need a database if we want to provide the full-size image, google drive API worth a try?')
+# st.info('TODO: we will need a database if we want to provide the full-size image, google drive API worth a try?')

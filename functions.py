@@ -57,3 +57,4 @@ def write_s3_pickle(s3_client, bucket, key, my_pickle):
 	pickle_byte_obj = pickle.dumps(my_pickle)
 	s3_client.put_object(Bucket=bucket, Key=key, Body=pickle_byte_obj)
 
+

@@ -50,7 +50,7 @@ if submit:
 			st.write("祝一切好，五年后见！")
 
 
-st.info('TODO: slightly tricky if we want to automate. Data (mapped content) should be stored separately in remote database as well as locally for safety. May also consider applying security control')
+# st.info('TODO: slightly tricky if we want to automate. Data (mapped content) should be stored separately in remote database as well as locally for safety. May also consider applying security control')
 			
 
 my_html = """

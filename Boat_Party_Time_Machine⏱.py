@@ -19,9 +19,9 @@ image = Image.open('./data/logo.PNG')
 st.image(image, width=200)
 st.title('CCS Alumni Boat Party 2022')
 
-st.subheader('About US')
+# st.subheader('About US')
 
-st.subheader('technical support contact')
+# st.subheader('technical support contact')
 
 st.subheader('留言板')
 st.text('🗻________________________________________________________________________________🗻')
@@ -71,4 +71,5 @@ show_s3_image(bucket='boatpartystreamlit2', key="JJC_5143.jpeg")
 # font-size:13px; font-family:Arial; color: #F0FFFF;} 
 # </style> """, unsafe_allow_html=True)
 # st.markdown('<p class="font">留言无法撤回。若需删除留言，请联系：chenyuanjie625@gmail.com</p>', unsafe_allow_html=True)
-st.text('⚠️留言无法撤回。若需删除留言，请联系：chenyuanjie625@gmail.com')
+st.text('⚠️留言无法撤回。若需删除留言，请联系我们')
+st.info('Technical Support & Contacts: chenyuanjie625@gmail.com')
