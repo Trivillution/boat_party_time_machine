@@ -7,6 +7,7 @@ import io
 
 from functions import *
 
+st.set_page_config(page_title='CUCCS Boat Party App', initial_sidebar_state='expanded')
 # AWS_ACCESS_KEY_ID = st.secrets['AWS_ACCESS_KEY_ID']
 # AWS_SECRET_ACCESS_KEY = st.secrets['AWS_SECRET_ACCESS_KEY']
 qr_enable = st.sidebar.radio('', ('Hide QR Code', 'Display Page QR Code'))
@@ -59,6 +60,7 @@ if st.button('submit'):
 
 		# write message back to s3
 		write_df_to_s3(s3_client, messages_df, bucket='boatpartystreamlit2', key="feedback.csv")
+		st.experimental_rerun()
 		
 
 def show_s3_image(bucket, key):
