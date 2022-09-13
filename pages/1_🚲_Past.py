@@ -26,7 +26,7 @@ submitted_tickets = read_s3_pickle(s3_client, 'boatpartystreamlit2', 'past_redee
 ticket_mapping = read_s3_pickle(s3_client, 'boatpartystreamlit2', 'ticket_number_to_photo_id.pkl')
 #images = ['image1', 'image 2']
 
-all_images = set(np.arange(33))
+all_images = set(np.arange(135))
  # needs update
 
 occupied_images = set(ticket_mapping.values())
