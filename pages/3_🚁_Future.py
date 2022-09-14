@@ -40,7 +40,7 @@ if submit:
 			if email in future_messages.keys():
 				st.info('重复提交不会覆盖之前的信息！你可以对自己唠叨唠叨再唠叨...')
 				future_messages[email] = future_messages[email] + [content]
-				future_name[email] = future_messages[email] + [name]
+				future_name[email] = future_name[email] + [name]
 			else:
 				future_messages[email] = [content]
 				future_name[email] = [name]
