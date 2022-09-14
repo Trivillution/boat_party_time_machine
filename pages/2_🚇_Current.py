@@ -10,8 +10,8 @@ if qr_enable == 'Display Page QR Code':
 
 st.title('“嘿，朋友”')
 
-st.write("曾经的同学，或是校友。或许一起结伴去过回味轩，或许在同一个Lecture Hall听过课，或许未曾谋面。无论如何，你们将会在我们的Boat Party上见到。你有什么想对Ta说的吗？")
-st.text("请在这里留下你的话，可以是你今天的心情，一段你的回忆，不然的话，编个段子吧！")
+st.write("曾经的我们，或许一起结伴去过回味轩，或许在同一个Lecture Hall听过课，又或许素未平生。无论如何，我们都因剑桥这个纽带将在Boat Party相遇，你有什么想对Ta说的吗？")
+st.text("请在这里留下你的话，可以是你今天的心情，可以是你的回忆，不然的话，编个段子吧！")
 ticket_number = st.text_input('your ticket code')
 comments = st.text_area('在此处留言')
 
